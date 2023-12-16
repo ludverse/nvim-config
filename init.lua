@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 -- BEGIN LAZY.NVIM
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,29 +17,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(require("plugins"), opts)
 require("lsp")
+require("maploader")
 
 -- User opts
-vim.g.mapleader = " "
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.shiftwidth = 4
 vim.o.mouse = ""
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+vim.o.relativenumber = true
+vim.o.number = true
+vim.o.cmdheight = 0
+
+-- set leader key to no operation so no-one else will use it
+vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", {});
 
 vim.cmd("colorscheme tokyonight-night")
-
-require("lualine").setup({
-    options = {
-        component_separators = {
-            left = "|",
-            right = "|"
-        },
-        section_separators = {
-            left = "",
-            right = ""
-        }
-    }
-})
-
-require("bufferline").setup({
-
-})
