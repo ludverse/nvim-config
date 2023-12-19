@@ -40,7 +40,7 @@ return {
             }
         },
         i = {
-            ["<C-d>"] = { require("cmp").mapping.complete }
+            -- ["<C-d>"] = { require("cmp").complete }
         },
     },
     lsp = {
