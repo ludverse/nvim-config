@@ -16,14 +16,16 @@ return {
                 "Show LSP info",
                 { silent = true }
             },
-            ["gc"] = { require("Comment.api").toggle.linewise.current, "Toggle linewise comment" },
-            ["gb"] = { require("Comment.api").toggle.blockwise.current, "Toggle blockwise comment" }
+            ["<C-h>"] = { ":wincmd h<CR>", "Switch to buffer left", { silent = true } },
+            ["<C-j>"] = { ":wincmd j<CR>", "Switch to buffer down", { silent = true } },
+            ["<C-k>"] = { ":wincmd k<CR>", "Switch to buffer up", { silent = true } },
+            ["<C-l>"] = { ":wincmd l<CR>", "Switch to buffer right", { silent = true } }
         },
+
         x = {
             ["gc"] = {
                 function()
-                    local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true
-)
+                    local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
                     vim.api.nvim_feedkeys(esc, "nx", false)
                     require("Comment.api").toggle.linewise(vim.fn.visualmode())
                 end,
@@ -39,10 +41,12 @@ return {
                 "Toggle linewise comment"
             }
         },
+
         i = {
-            -- ["<C-d>"] = { require("cmp").complete }
+            ["<C-Space>"] = { require("cmp").complete }
         },
     },
+
     lsp = {
         n = {
             ["gD"] = { vim.lsp.buf.declaration, "Go declaration" },
@@ -55,10 +59,12 @@ return {
             ["<Leader>lr"] = { vim.lsp.buf.rename, "Rename symbol" },
             ["<Leader>la"] = { vim.lsp.buf.code_action, "Code actions" }
         },
+
         v = {
             ["<Leader>la"] = { vim.lsp.buf.code_action, "Code actions" }
         }
     },
+
     diagnostics = {
 
     }

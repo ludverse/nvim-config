@@ -29,6 +29,7 @@ vim.o.timeoutlen = 300
 vim.o.relativenumber = true
 vim.o.number = true
 vim.o.cmdheight = 0
+vim.o.swapfile = false
 
 -- set leader key to no operation so no-one else will use it
 vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", {});
