@@ -1,11 +1,51 @@
 return {
+    { "neovim/nvim-lspconfig" },
+    { "folke/which-key.nvim", opts = {} },
+
     {
-        "folke/which-key.nvim",
+        "folke/tokyonight.nvim",
         opts = {},
+        config = function()
+            vim.cmd("colorscheme tokyonight-night")
+        end
     },
+
     {
-        "folke/tokyonight.nvim"
+        "akinsho/bufferline.nvim",
+        dependencies = { "folke/tokyonight.nvim" },
+        opts = {
+            options = {
+                separator_style = {"", ""},
+                diagnostics = "nvim_lsp",
+                indicator = {
+                    style = "none"
+                },
+                diagnostics_indicator = function(count, level, diagnostics_dict, context)
+                    if level == "hint" then
+                        return "󰌶 " .. count
+                    elseif level == "info" then
+                        return "󰋽 " .. count
+                    elseif level == "warning" then
+                        return "󰀪 " .. count
+                    elseif level == "error" then
+                        return "󰅚 " .. count
+                    end
+                end
+            },
+            highlights = {
+                buffer_selected = { bold = false, italic = false },
+                hint_selected = { bold = false, italic = false },
+                hint_diagnostic_selected = { bold = false, italic = false },
+                info_selected = { bold = false, italic = false },
+                info_diagnostic_selected = { bold = false, italic = false },
+                warning_selected = { bold = false, italic = false },
+                warning_diagnostic_selected = { bold = false, italic = false },
+                error_selected = { bold = false, italic = false },
+                error_diagnostic_selected = { bold = false, italic = false },
+            }
+        }
     },
+
     {
         "nvim-lualine/lualine.nvim",
         opts = {
@@ -29,10 +69,6 @@ return {
         }
     },
     {
-        "akinsho/bufferline.nvim",
-        opts = {}
-    },
-    {
         "nvim-telescope/telescope.nvim",
         lazy = true,
         dependencies = { "nvim-lua/plenary.nvim" }
@@ -42,7 +78,7 @@ return {
         lazy = true,
         dependencies = { "nvim-tree/nvim-web-devicons" }
     },
-    { "neovim/nvim-lspconfig" },
+
     {
         "knubie/nvim-cmp",
         dependencies = { "onsails/lspkind.nvim" },
@@ -113,16 +149,19 @@ return {
             }
         end
     },
+
     {
         "stevearc/dressing.nvim",
         opts = {},
     },
+
     {
         "numToStr/Comment.nvim",
         opts = {
             mappings = false
         },
     },
+
     { "sar/cmp-lsp.nvim", lazy = true },
     { "L3MON4D3/LuaSnip", lazy = true },
     { "sigmaSd/deno-nvim", lazy = true },
