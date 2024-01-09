@@ -1,5 +1,6 @@
 -- get capabilities for autocompletion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 -- Setup language servers.
 local lspconfig = require("lspconfig")
