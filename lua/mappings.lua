@@ -9,13 +9,16 @@ return {
                 end,
                 "Quick buffer switcher"
             },
-            ["!"] = { require("telescope.builtin").find_files, "Find files" },
+            ["!"] = { function() require("telescope.builtin").find_files() end, "Find files" },
+            ["<Leader>n"] = { ":enew<Enter>", "New empty buffer", { silent = true } },
             ["<Leader>w"] = { ":bd<Enter>", "Close buffer", { silent = true } },
             ["<Leader>li"] = {
                 ":LspInfo<Enter>",
                 "Show LSP info",
                 { silent = true }
             },
+            ["<Leader>ld"] = { function() require("telescope.builtin").diagnostics() end, "Search diagnostics" },
+            ["gl"] = { function() vim.diagnostic.open_float() end, "Hover diagnostics" },
             ["<C-h>"] = { ":wincmd h<CR>", "Switch to buffer left", { silent = true } },
             ["<C-j>"] = { ":wincmd j<CR>", "Switch to buffer down", { silent = true } },
             ["<C-k>"] = { ":wincmd k<CR>", "Switch to buffer up", { silent = true } },
@@ -33,8 +36,8 @@ return {
             },
             ["gb"] = {
                 function()
-                    local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true
-)
+                    local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+
                     vim.api.nvim_feedkeys(esc, "nx", false)
                     require("Comment.api").toggle.blockwise(vim.fn.visualmode())
                 end,
