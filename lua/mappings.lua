@@ -41,12 +41,12 @@ return {
                     vim.api.nvim_feedkeys(esc, "nx", false)
                     require("Comment.api").toggle.blockwise(vim.fn.visualmode())
                 end,
-                "Toggle linewise comment"
+                "Toggle blockwise comment"
             }
         },
 
         i = {
-            ["<C-Space>"] = { require("cmp").complete }
+            ["<C-s>"] = { require("cmp").complete }
         },
     },
 

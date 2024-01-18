@@ -5,6 +5,7 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         setup = function()
             local actions = require("telescope.actions")
+
             require("telescope").setup({
                 defaults = {
                     mappings = {

@@ -1,8 +1,13 @@
 return {
     {
         "knubie/nvim-cmp",
-        dependencies = { "onsails/lspkind.nvim" },
-        opts = function()
+        dependencies = {
+            "onsails/lspkind.nvim",
+            "saadparwaiz1/cmp_luasnip",
+            "L3MON4D3/LuaSnip",
+            "sar/cmp-lsp.nvim"
+        },
+        config = function()
             local function has_skippable_after()
                 unpack = unpack or table.unpack
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -16,7 +21,7 @@ return {
             end
 
             local cmp = require("cmp")
-            return {
+            cmp.setup({
                 snippet = {
                     expand = function(args)
                         require("luasnip").lsp_expand(args.body)
@@ -43,7 +48,7 @@ return {
                         end
                     end, { "i", "s" }),
                     ["<CR>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
+                        if cmp.get_selected_entry() then
                             cmp.confirm()
                         else
                             fallback()
@@ -66,7 +71,7 @@ return {
                         end
                    })
                }
-            }
+            })
         end
     }
 }
