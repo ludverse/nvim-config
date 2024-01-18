@@ -40,11 +40,11 @@ local function set_mappings(sub_mappings, use_buffer_n)
                 end
             end
 
-	    if use_buffer_n ~= nil then
+            if use_buffer_n ~= nil then
                 vim.api.nvim_buf_set_keymap(use_buffer_n, mode, key, rhs, opts)
-	    else
+            else
                 vim.api.nvim_set_keymap(mode, key, rhs, opts)
-	    end
+            end
         end
     end
 end
