@@ -42,3 +42,4 @@ require("maploader")
 -- set leader key to no operation so no-one else will use it
 vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", {});
 
+vim.api.nvim_set_hl(0, "MsgArea", { bg = "#1e1e1e" })

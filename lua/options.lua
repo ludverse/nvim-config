@@ -9,5 +9,8 @@ return {
     number = true,
     swapfile = false,
     scrolloff = 8,
-    showmode = false
+    showmode = false,
+    ruler = false,
+    showcmd = false,
+    shortmess = "fxtToOFSFsI"
 }
