@@ -20,12 +20,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- END LAZY.NVIM
 
+local config_path = vim.fn.stdpath("config")
+local is_windows = false
+if string.find(config_path, "\\") then
+    is_windows = true
+end
+
 local plugins = {}
 
-local config_path = vim.fn.stdpath("config")
 local plugins_dir = vim.split(vim.fn.glob(config_path .. "/lua/plugins/*"), "\n", { trimempty = true })
 for _, path in ipairs(plugins_dir) do
-    local dirs = vim.split(path, "/")
+    local dirs = vim.split(path, "/");
+    if is_windows then
+        dirs = vim.split(path, "\\")
+    end
+
     local filename = dirs[#dirs]
     local modname = vim.split(filename, "%.")[1]
 
@@ -42,4 +51,8 @@ require("maploader")
 -- set leader key to no operation so no-one else will use it
 vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", {});
 
-vim.api.nvim_set_hl(0, "MsgArea", { bg = "#1e1e1e" })
+if is_windows then
+    vim.api.nvim_set_hl(0, "MsgArea", { bg = "#0c0c0c" })
+else
+    vim.api.nvim_set_hl(0, "MsgArea", { bg = "#1e1e1e" })
+end
