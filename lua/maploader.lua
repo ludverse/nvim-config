@@ -1,6 +1,8 @@
 local mappings = require("mappings")
 
-local function preload_mappings(sub, sub_mappings)
+local M = {}
+
+M.preload_mappings = function(sub, sub_mappings)
     for mode, mode_mappings in pairs(sub_mappings) do
         for key, mapping in pairs(mode_mappings) do
             local opts = {
@@ -18,7 +20,7 @@ local function preload_mappings(sub, sub_mappings)
     end
 end
 
-local function set_mappings(sub_mappings, use_buffer_n)
+M.set_mappings = function(sub_mappings, use_buffer_n)
     for mode, mode_mappings in pairs(sub_mappings) do
         for key, mapping in pairs(mode_mappings) do
             local opts = {
@@ -49,12 +51,14 @@ local function set_mappings(sub_mappings, use_buffer_n)
     end
 end
 
-set_mappings(mappings.global)
+M.set_mappings(mappings.global)
 
-preload_mappings("lsp", mappings.lsp)
+M.preload_mappings("lsp", mappings.lsp)
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(e)
-        set_mappings(mappings.lsp, e.buf)
+        M.set_mappings(mappings.lsp, e.buf)
     end
 })
+
+return M

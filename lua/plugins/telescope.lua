@@ -1,6 +1,9 @@
+local mappings = require("mappings")
+
 return {
     {
         "nvim-telescope/telescope.nvim",
+        version = "^0.1.5",
         lazy = true,
         dependencies = { "nvim-lua/plenary.nvim" },
         setup = function()
@@ -8,11 +11,7 @@ return {
 
             require("telescope").setup({
                 defaults = {
-                    mappings = {
-                        i = {
-                            ["<Esc>"] = actions.close
-                        }
-                    }
+                    mappings = mappings.telescope
                 },
                 pickers = {
                     buffers = {

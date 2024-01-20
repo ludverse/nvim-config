@@ -44,9 +44,9 @@ for _, path in ipairs(plugins_dir) do
     end
 end
 
+require("maploader")
 require("lazy").setup(plugins)
 require("lsp")
-require("maploader")
 
 -- set leader key to no operation so no-one else will use it
 vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", {});

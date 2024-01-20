@@ -1,5 +1,10 @@
 return {
     {
+        "L3MON4D3/LuaSnip",
+        version = "^2.2.0"
+    },
+
+    {
         "knubie/nvim-cmp",
         dependencies = {
             "onsails/lspkind.nvim",
