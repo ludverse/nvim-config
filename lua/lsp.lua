@@ -1,31 +1,23 @@
+local lsps = require("lsps")
+
 -- get capabilities for autocompletion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 -- Setup language servers.
 local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({
-    capabilities = capabilities
-})
 
-lspconfig.rust_analyzer.setup({
-    capabilities = capabilities,
-    -- settings = {
-        -- ["rust-analyzer"] = {},
-    -- },
-})
+for name, opts in pairs(lsps) do
+    local config = {
+        capabilities = capabilities
+    }
 
-lspconfig.tsserver.setup({
-    --capabilities = capabilities
-})
+    for k, val in pairs(opts) do
+         config[k] = val
+    end
 
-lspconfig.html.setup({
-    capabilities = capabilities
-})
-
-lspconfig.emmet_ls.setup({
-    capabilities = capabilities
-})
+    lspconfig[name].setup(config)
+end
 
 vim.diagnostic.config({
     severity_sort = true
