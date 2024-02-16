@@ -19,6 +19,14 @@ lspconfig.tsserver.setup({
     --capabilities = capabilities
 })
 
+lspconfig.html.setup({
+    capabilities = capabilities
+})
+
+lspconfig.emmet_ls.setup({
+    capabilities = capabilities
+})
+
 vim.diagnostic.config({
     severity_sort = true
 })

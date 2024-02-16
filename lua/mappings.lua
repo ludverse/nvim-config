@@ -73,4 +73,16 @@ return {
             ["<Esc>"] = function() require("telescope.actions").close() end
         }
     },
+
+    platform = {
+        unix = {
+            i = {
+                [""] = { "<C-w>" }
+            }
+        },
+
+        win = {
+
+        }
+    }
 }

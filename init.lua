@@ -21,9 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 -- END LAZY.NVIM
 
 local config_path = vim.fn.stdpath("config")
-local is_windows = false
+local is_win = false
 if string.find(config_path, "\\") then
-    is_windows = true
+    is_win = true
 end
 
 local plugins = {}
@@ -31,7 +31,7 @@ local plugins = {}
 local plugins_dir = vim.split(vim.fn.glob(config_path .. "/lua/plugins/*"), "\n", { trimempty = true })
 for _, path in ipairs(plugins_dir) do
     local dirs = vim.split(path, "/");
-    if is_windows then
+    if is_win then
         dirs = vim.split(path, "\\")
     end
 
@@ -44,15 +44,21 @@ for _, path in ipairs(plugins_dir) do
     end
 end
 
-require("maploader")
+local maploader = require("maploader")
 require("lazy").setup(plugins)
 require("lsp")
 
--- set leader key to no operation so no-one else will use it
-vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", {});
+local mappings = require("mappings")
 
-if is_windows then
+maploader.preload_mappings("platform.win", mappings.platform.win)
+maploader.preload_mappings("platform.unix", mappings.platform.unix)
+
+if is_win then
+    maploader.set_mappings(mappings.platform.win)
+
     vim.api.nvim_set_hl(0, "MsgArea", { bg = "#0c0c0c" })
 else
+    maploader.set_mappings(mappings.platform.unix)
+
     vim.api.nvim_set_hl(0, "MsgArea", { bg = "#1e1e1e" })
 end
