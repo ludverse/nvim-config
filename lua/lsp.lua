@@ -3,6 +3,7 @@ local lsps = require("lsps")
 -- get capabilities for autocompletion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
+capabilities.textDocument.completion.dynamicRegistration = true
 
 -- Setup language servers.
 local lspconfig = require("lspconfig")

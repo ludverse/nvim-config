@@ -5,22 +5,19 @@ return {
         opts = {
             options = {
                 separator_style = { "█", "█" },
-                diagnostics = "nvim_lsp",
                 indicator = {
                     style = "none"
                 },
                 show_buffer_close_icons = false,
                 tab_size = 0,
-                diagnostics_indicator = function(count, level, diagnostics_dict, context)
-                    if level == "info" then
-                        return "󰋽 " .. count
-                    elseif level == "hint" then
-                        return "󰌶 " .. count
-                    elseif level == "warning" then
-                        return "󰀪 " .. count
-                    elseif level == "error" then
-                        return "󰅚 " .. count
-                    end
+                sort_by = function(buf_a, buf_b)
+                    local bufinfo_a = vim.fn.getbufinfo(buf_a.id)[1]
+                    local bufinfo_b = vim.fn.getbufinfo(buf_b.id)[1]
+
+                    local lastused_a = bufinfo_a.lastused
+                    local lastused_b = bufinfo_b.lastused
+
+                    return lastused_a > lastused_b
                 end
             },
             highlights = {
