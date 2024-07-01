@@ -9,6 +9,7 @@ return {
             }
         }
     },
+    ["zls"] = {},
     ["tsserver"] = {},
     ["html"] = {
         filetypes = { "vue", "html", "xml", "svg" }

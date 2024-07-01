@@ -67,5 +67,11 @@ return {
     },
 
     { "sigmaSd/deno-nvim", lazy = true },
-    { "folke/neodev.nvim", opts = {} }
+    { "folke/neodev.nvim", opts = {} },
+    {
+        "windwp/nvim-autopairs",
+        lazy = true,
+        event = "InsertEnter",
+        config = true
+    }
 }
