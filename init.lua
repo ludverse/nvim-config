@@ -49,9 +49,15 @@ require("lazy").setup(plugins)
 require("lsp")
 
 local mappings = require("mappings")
+maploader.set_mappings(mappings.global)
 
-maploader.preload_mappings("platform.win", mappings.platform.win)
-maploader.preload_mappings("platform.unix", mappings.platform.unix)
+maploader.preload_mappings("lsp", mappings.lsp)
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(e)
+        maploader.set_mappings(mappings.lsp, e.buf)
+    end
+})
 
 if is_win then
     maploader.set_mappings(mappings.platform.win)

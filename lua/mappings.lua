@@ -1,41 +1,13 @@
-local is_inside_work_tree = {}
-
-
 return {
     global = {
         n = {
-            ["<Leader>e"] = {
-                function()
-                    require("telescope.builtin").buffers()
-                end,
-                "Quick buffer switcher"
-            },
-            ["<Leader>f"] = {
-                function()
-                    local opts = {
-                        prompt_title = "Project Files"
-                    }
-
-                    local cwd = vim.fn.getcwd()
-                    if is_inside_work_tree[cwd] == nil then
-                        vim.fn.system("git rev-parse --is-inside-work-tree")
-                        is_inside_work_tree[cwd] = vim.v.shell_error == 0
-                    end
-
-                    if is_inside_work_tree[cwd] then
-                        require("telescope.builtin").git_files(opts)
-                    else
-                        require("telescope.builtin").find_files(opts)
-                    end
-                end,
-                "Find files"
-            },
+            ["H"] = { "<nop>", "ludv actions" },
 
             ["<Leader>n"] = { ":enew<Enter>", "New empty buffer" },
             ["<Leader>w"] = { ":bd<Enter>", "Close buffer" },
 
             ["<Leader>li"] = { ":LspInfo<Enter>", "Show LSP info" },
-            ["<Leader>ld"] = { function() require("telescope.builtin").diagnostics() end, "Search diagnostics" },
+            ["<Leader>ld"] = { function() require("telescope.builtin").diagnostics({ severity_bound = 0 }) end, "Search diagnostics" },
             ["gl"] = { function() vim.diagnostic.open_float() end, "Hover diagnostics" },
 
             ["<C-h>"] = { ":wincmd h<CR>", "Switch to buffer left" },

@@ -51,14 +51,4 @@ M.set_mappings = function(sub_mappings, use_buffer_n)
     end
 end
 
-M.set_mappings(mappings.global)
-
-M.preload_mappings("lsp", mappings.lsp)
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(e)
-        M.set_mappings(mappings.lsp, e.buf)
-    end
-})
-
 return M

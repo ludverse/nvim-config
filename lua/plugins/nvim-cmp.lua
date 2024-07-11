@@ -5,7 +5,8 @@ return {
     },
 
     {
-        "knubie/nvim-cmp",
+        "hrsh7th/nvim-cmp",
+        commit = "a110e12",
         dependencies = {
             "onsails/lspkind.nvim",
             "saadparwaiz1/cmp_luasnip",
@@ -16,13 +17,16 @@ return {
             local function has_skippable_after()
                 unpack = unpack or table.unpack
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col + 1, col + 1):match("[%)%]%}%>|]") ~= nil
+                return col ~= 0 and
+                    vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col + 1, col + 1):match("[%)%]%}%>|]") ~=
+                    nil
             end
 
             local function has_word_before()
                 unpack = unpack or table.unpack
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+                return col ~= 0 and
+                    vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
             end
 
             local cmp = require("cmp")
@@ -71,12 +75,23 @@ return {
                         mode = "symbol",
                         maxwidth = 50,
                         ellipsis_char = "...",
-                        before = function (entry, vim_item)
+                        before = function(entry, vim_item)
                             return vim_item
                         end
-                   })
-               }
+                    })
+                }
             })
         end
-    }
+    },
+
+    {
+        "stevearc/conform.nvim",
+        -- todo add lsps.lua options into format
+        opts = {
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            },
+        },
+    },
 }

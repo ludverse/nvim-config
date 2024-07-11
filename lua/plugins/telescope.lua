@@ -1,9 +1,41 @@
+local is_inside_work_tree = {}
+
 return {
     {
         "nvim-telescope/telescope.nvim",
         lazy = true,
-        commit = "f5363d3c2a4ab73f915550a61711b9376f5bbf6b", -- because that commit they added diagnostics sort_by option
+        version = "^0.1.8",
         dependencies = { "nvim-lua/plenary.nvim" },
+
+        keys = {
+            {
+                "<Leader>e",
+                function() require("telescope.builtin").buffers() end,
+                desc ="Quick buffer switcher"
+            },
+            {
+                "<Leader>f",
+                function()
+                    local opts = {
+                        prompt_title = "Project Files"
+                    }
+
+                    local cwd = vim.fn.getcwd()
+                    if is_inside_work_tree[cwd] == nil then
+                        vim.fn.system("git rev-parse --is-inside-work-tree")
+                        is_inside_work_tree[cwd] = vim.v.shell_error == 0
+                    end
+
+                    if is_inside_work_tree[cwd] then
+                        require("telescope.builtin").git_files(opts)
+                    else
+                        require("telescope.builtin").find_files(opts)
+                    end
+                end,
+                desc = "Find files"
+            },
+        },
+
         config = function()
             local actions = require("telescope.actions")
 

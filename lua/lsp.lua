@@ -1,6 +1,5 @@
 local lsps = require("lsps")
 
--- get capabilities for autocompletion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = false
 capabilities.textDocument.completion.dynamicRegistration = true
@@ -14,7 +13,7 @@ for name, opts in pairs(lsps) do
     }
 
     for k, val in pairs(opts) do
-         config[k] = val
+        config[k] = val
     end
 
     lspconfig[name].setup(config)
