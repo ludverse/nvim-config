@@ -1,4 +1,5 @@
---[[
+# lazy.nvim docs because someone needs to end this suffering
+
 lazy.nvim documentation cuz countless lifetimes are wasted every year because of bad documentation
 
 "real" docs: https://github.com/folke/lazy.nvim
@@ -6,7 +7,7 @@ much more helpful article: https://dev.to/vonheikemen/lazynvim-plugin-configurat
 
 ----
 lazy?: boolean
-default: false
+default: false (if not `event`, `keys`, `ft`, etc. is set)
 
 if true lazy.nvim will only call the setup function for the plugin or config function when it's required
 
@@ -45,70 +46,3 @@ init?: function(plugin_spec)
     plugin_spec: LazyPlugin (see https://github.com/folke/lazy.nvim)
 
 a function that will run on nvim startup no matter what, even if plugin is lazy loaded
-
-----
-
---]]
-
-return {
-    {
-        "neovim/nvim-lspconfig",
-        version = "^0.1.8",
-    },
-
-    {
-        "folke/which-key.nvim",
-        version = "^2.1.0",
-        opts = {},
-    },
-
-    {
-        "folke/tokyonight.nvim",
-        version = "^4.4.0",
-        config = function()
-            vim.cmd("colorscheme tokyonight-night")
-        end,
-    },
-
-    {
-        -- nice vim.input and vim.select boxes
-        "stevearc/dressing.nvim",
-        commit = "6741f10",
-    },
-
-    {
-        "numToStr/Comment.nvim",
-        version = "^0.8.0",
-        opts = {
-            mappings = false
-        }
-    },
-
-    -- { "sigmaSd/deno-nvim", lazy = true }, remove?
-
-    {
-        -- for neovim lua lsp types
-        "folke/neodev.nvim",
-        opts = {}
-    },
-
-    {
-        "windwp/nvim-autopairs",
-        commit = "78a4507",
-        lazy = true,
-        event = "InsertEnter",
-        opts = {},
-    },
-
-    {
-        "kylechui/nvim-surround",
-        version = "^2.3.0",
-        lazy = true,
-        event = "BufEnter",
-        opts = {
-        },
-        init = function()
-
-        end
-    }
-}
