@@ -9,7 +9,11 @@ return {
 		"folke/tokyonight.nvim",
 		version = "^4.4.0",
 		config = function()
-			vim.cmd("colorscheme tokyonight-night")
+			require("tokyonight").setup({
+				transparent = true,
+			});
+
+			vim.cmd("colorscheme tokyonight")
 		end,
 	},
 
@@ -24,12 +28,13 @@ return {
 
 	-- { "sigmaSd/deno-nvim", lazy = true }, remove?
 
-	-- {
-	--     -- for neovim lua lsp types
-	--     "folke/lazydev.nvim",
-	--     ft = "lua",
-	--     opts = {}
-	-- },
+	{
+	    -- for neovim lua lsp types
+	    "folke/lazydev.nvim",
+	    ft = "lua",
+		version = "^1.8.0",
+	    opts = {}
+	},
 
 	{
 		"windwp/nvim-autopairs",

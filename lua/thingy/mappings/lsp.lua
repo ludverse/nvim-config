@@ -1,4 +1,5 @@
 return {
+	{ "<Leader>l", "<Nop>", desc = "LSP" },
 	{ "gD",         vim.lsp.buf.declaration,     "Go declaration" },
 	{ "gd",         vim.lsp.buf.definition,      "Go definition" },
 	{ "K",          vim.lsp.buf.hover,           "Symbol hover menu" },

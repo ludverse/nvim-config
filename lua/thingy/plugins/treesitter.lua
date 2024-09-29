@@ -17,6 +17,7 @@ return {
 					"javascript",
 					"html",
 					"css",
+					"hurl",
 				},
 				sync_install = false,
 				highlight = { enable = true },
@@ -43,23 +44,26 @@ return {
 							["ia"] = "@parameter.inner",
 							["ai"] = "@conditional.outer",
 							["ii"] = "@conditional.inner",
+							["al"] = "@assignment.lhs",
+							["il"] = "@assignment.lhs",
+							["ar"] = "@assignment.rhs",
+							["ir"] = "@assignment.rhs",
+						},
+
+						selection_modes = {
+							["@function.outer"] = "V",
+							["@function.inner"] = "V",
+							["@conditional.outer"] = "V",
+							["@conditional.inner"] = "V",
+
+							["@parameter.outer"] = "v",
+							["@parameter.inner"] = "v",
+							["@assignment.lhs"] = "v",
+							["@assignment.rhs"] = "v",
 						},
 					}
 				}
 			}
 		end
 	},
-
-	{
-		"Wansmer/treesj",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		lazy = true,
-		event = "BufEnter",
-
-		keys = require("thingy.mappings.treesitter"),
-
-		opts = {
-			use_default_keymaps = false
-		},
-	}
 }

@@ -1,18 +1,3 @@
-local function has_skippable_after()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and
-		vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col + 1, col + 1):match(
-			"[%)%]%}%>\"'|,]") ~= nil
-end
-
-local function has_word_before()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and
-		vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local cmp = require("cmp")
 cmp.setup({
 	snippet = {
@@ -20,48 +5,33 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end
 	},
-	mapping = {
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			else --if has_skippable_after() then
-				local right_key = vim.api.nvim_replace_termcodes("<Right>", true, false, true)
-				vim.api.nvim_feedkeys(right_key, "n", false)
-				-- elseif has_word_before() then
-				-- 	cmp.complete()
-				-- else
-				-- 	fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<CR>"] = cmp.mapping(function(fallback)
-			if cmp.get_selected_entry() then
-				cmp.confirm()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+	completion = {
+		autocomplete = { "InsertEnter", "TextChanged" }
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "lazydev" }
 	}, {
 		{ name = "buffer" },
 	}),
 	formatting = {
 		format = require("lspkind").cmp_format({
 			mode = "symbol",
-			maxwidth = 50,
+			maxwidth = 30,
 			ellipsis_char = "...",
 			before = function(entry, vim_item)
+				-- to make the popup menus not stretch all the way to the edge because idk nvim-cmp is stupid
+				vim_item.menu = ""
+
 				return vim_item
 			end
-		})
-	}
+
+		}),
+		-- fields = { "kind", "abbr" },
+	},
+	-- window = {
+	-- 	completion = cmp.config.window.bordered(),
+	-- 	documentation = cmp.config.window.bordered(),
+	-- }
 })

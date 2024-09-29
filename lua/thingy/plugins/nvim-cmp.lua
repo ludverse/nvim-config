@@ -15,21 +15,8 @@ return {
 			"L3MON4D3/LuaSnip",
 			"sar/cmp-lsp.nvim"
 		},
+		keys = require("thingy.mappings.nvim-cmp"),
 
-		config = function()
-			require("thingy.nvim-cmp")
-		end
-	},
-
-	{
-		"stevearc/conform.nvim",
-		event = "LspAttach",
-		-- todo add lsps.lua options into format
-		opts = {
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_format = "fallback",
-			},
-		},
-	},
+		config = function() require("thingy.nvim-cmp") end,
+	}
 }

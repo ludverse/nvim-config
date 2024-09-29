@@ -1,3 +1,6 @@
+local no_snippets_capabilities = require('cmp_nvim_lsp').default_capabilities()
+no_snippets_capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 return {
 	["lua_ls"] = {
 		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
@@ -41,6 +44,7 @@ return {
 	},
 
 	["rust_analyzer"] = {
+		capabilities = no_snippets_capabilities,
 		settings = {
 			["rust-analyzer"] = {
 				cargo = {
@@ -52,13 +56,13 @@ return {
 
 	["zls"] = {},
 
-	["gopls"] = {
-		settings = {
-			gopls = {
-				gofumpt = true
-			}
-		}
-	},
+	--["gopls"] = {
+	--settings = {
+	--gopls = {
+	--gofumpt = true
+	--}
+	--}
+	--},
 
 	["gleam"] = {
 
@@ -72,5 +76,7 @@ return {
 		filetypes = { "vue", "html", "xml", "svg" }
 	},
 	["cssls"] = {},
-	["volar"] = {}
+	["volar"] = {},
+	["pylsp"] = {},
+	["hls"] = {},
 }

@@ -1,12 +1,14 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		opts = {}
+		opts = {},
 	},
 
 	{
 		"williamboman/mason-lspconfig",
 		dependencies = { "williamboman/mason.nvim" },
-		opts = {}
+		opts = {
+			automatic_installation = true
+		}
 	},
 }

@@ -1,4 +1,5 @@
 return {
+	{ "<Leader>h", "<Nop>", desc = "Harpoon" },
 	{
 		"<Leader>hh",
 		function()
