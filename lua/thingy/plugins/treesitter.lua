@@ -2,7 +2,6 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = true,
-		event = "BufEnter",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 
@@ -28,6 +27,7 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		event = "BufEnter",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 
 		config = function()

@@ -1,9 +1,8 @@
 return {
 	{
 		"Wansmer/treesj",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		lazy = true,
 		event = "BufEnter",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 
 		keys = require("thingy.mappings.treesj"),
 

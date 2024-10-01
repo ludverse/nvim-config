@@ -1,7 +1,6 @@
 return {
 	{
 		"Shatur/neovim-session-manager",
-		commit = "a0b9d25", -- in later commits they require nvim 0.10.0 because they hate humanity
 		lazy = false,
 
 		keys = {
