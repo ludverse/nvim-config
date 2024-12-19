@@ -2,7 +2,17 @@ return {
 	{
 		"folke/which-key.nvim",
 		version = "^2.1.0",
+		event = "VeryLazy",
 		opts = {},
+		keys = {
+			{
+				"<Leader>?",
+				function()
+					require("which-key").show()
+				end,
+				desc = "Which key",
+			},
+		},
 	},
 
 	{
@@ -23,17 +33,14 @@ return {
 		commit = "6741f10",
 	},
 
-	{
-	},
-
 	-- { "sigmaSd/deno-nvim", lazy = true }, remove?
 
 	{
-	    -- for neovim lua lsp types
-	    "folke/lazydev.nvim",
-	    ft = "lua",
+		-- for neovim lua lsp types
+		"folke/lazydev.nvim",
+		ft = "lua",
 		version = "^1.8.0",
-	    opts = {}
+		opts = {}
 	},
 
 	{

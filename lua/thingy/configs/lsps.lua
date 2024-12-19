@@ -56,13 +56,13 @@ return {
 
 	["zls"] = {},
 
-	--["gopls"] = {
-	--settings = {
-	--gopls = {
-	--gofumpt = true
-	--}
-	--}
-	--},
+	["gopls"] = {
+		settings = {
+			gopls = {
+				gofumpt = true
+			}
+		}
+	},
 
 	["gleam"] = {
 
@@ -79,4 +79,10 @@ return {
 	["volar"] = {},
 	["pylsp"] = {},
 	["hls"] = {},
+	["gdscript"] = {
+		cmd = { 'nc', '127.0.0.1', '6005' },
+		flags = {
+			debounce_text_changes = 150,
+		},
+	},
 }

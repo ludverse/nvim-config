@@ -35,7 +35,7 @@ config?: either function(plugin_spec, opts) or true
 
 lazy.nvim will call this function to let you handle the setup and configuration of the plugin. If config is a function, lazy.nvim will not call setup on the plugin
 
-config = true is equivalent to setting opts = {}, which is the recomended way of doing it
+config = true is equivalent to setting opts = {}, which the latter is the recomended way of doing it
 
 you can use config and opts together as the opts table will be passed as the second argument to this function (see opts)
 

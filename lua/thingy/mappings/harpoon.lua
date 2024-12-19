@@ -1,5 +1,5 @@
 return {
-	{ "<Leader>h", "<Nop>", desc = "Harpoon" },
+	{ "<Leader>h",  "<Nop>",                                            desc = "Harpoon" },
 	{
 		"<Leader>hh",
 		function()
@@ -24,6 +24,7 @@ return {
 	},
 
 	{ "<Leader>ha", function() require("harpoon"):list():add() end,     desc = "Add buffer to harpoon" },
+	{ "<Leader>hr", function() require("harpoon"):list():remove() end,  desc = "Add buffer to harpoon" },
 
 	{ "<C-j>",      function() require("harpoon"):list():select(1) end, desc = "Select harpoon 1" },
 	{ "<C-k>",      function() require("harpoon"):list():select(2) end, desc = "Select harpoon 2" },

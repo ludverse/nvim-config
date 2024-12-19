@@ -21,7 +21,9 @@ return {
 
 			require("session_manager").setup({
 				autoload_mode = { config.AutoloadMode.CurrentDir, config.AutoloadMode.LastSession },
-				autosave_only_in_session = true,
+				autosave_ignore_dirs = {
+					"/home/ludv"
+				},
 			})
 		end
 	},

@@ -8,7 +8,7 @@ return {
 			{
 				"<Leader>e",
 				function() require("oil").open_float() end,
-				desc = "Oil explore"
+				desc = "Floating explorer"
 			}
 		},
 

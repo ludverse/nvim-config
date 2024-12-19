@@ -13,9 +13,9 @@ return {
 		end
 	},
 
-	{
-    "jasonpanosso/harpoon-tabline.nvim",
-    dependencies = { "ThePrimeagen/harpoon" },
-		opts = {}
-}
+-- 	{
+--     "jasonpanosso/harpoon-tabline.nvim",
+--     dependencies = { "ThePrimeagen/harpoon" },
+-- 		opts = {}
+-- }
 }
