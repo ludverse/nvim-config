@@ -85,4 +85,5 @@ return {
 			debounce_text_changes = 150,
 		},
 	},
+	["clangd"] = {}
 }

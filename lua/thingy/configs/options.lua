@@ -15,5 +15,7 @@ return {
 	showcmd = false,
 	shortmess = "fxtToOFSFsI",
 	sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,globals",
-	completeopt = "menu,preview,longest"
+	completeopt = "menu,preview,longest",
+	laststatus = 0,
+	cmdheight = 0,
 }
